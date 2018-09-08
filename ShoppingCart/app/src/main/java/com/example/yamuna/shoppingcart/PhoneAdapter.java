@@ -32,7 +32,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
     }
 
     @Override
-    public void onBindViewHolder(PhoneAdapter.PhoneViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PhoneViewHolder holder, int position) {
         Phone phone = phoneList.get(position);
 
         Glide.with(context).load(Uri.parse(phone.getImage())).into(holder.image);
