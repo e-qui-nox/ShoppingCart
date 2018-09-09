@@ -8,18 +8,18 @@
 
     <EditText
         android:id="@+id/et_manufacturer"
-        android:layout_width="137dp"
-        android:layout_height="50dp"
+        android:layout_width="197dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
         android:gravity="center"
         android:hint="Manufacturer"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_model"
-        android:layout_width="138dp"
-        android:layout_height="50dp"
+        android:layout_width="197dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:hint="Model"
@@ -27,8 +27,8 @@
 
     <EditText
         android:id="@+id/et_min_price"
-        android:layout_width="138dp"
-        android:layout_height="50dp"
+        android:layout_width="197dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:hint="Minimum Price"
@@ -36,8 +36,8 @@
 
     <EditText
         android:id="@+id/et_max_price"
-        android:layout_width="138dp"
-        android:layout_height="50dp"
+        android:layout_width="197dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:hint="Maximum Price"
@@ -48,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="search"
-        android:text="SEARCH"/>
+        android:text="SEARCH" />
 
 </LinearLayout>

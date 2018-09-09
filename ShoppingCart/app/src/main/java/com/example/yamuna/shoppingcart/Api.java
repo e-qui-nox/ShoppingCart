@@ -21,4 +21,11 @@ public interface Api {
             @Query("max-price") String max_price,
             @Query("min-price") String min_price
     );
+
+    @GET("buy")
+    Call<Buy> getBuy(
+            @Query("model") String model,
+            @Query("username") String username,
+            @Query("qty") String quantity
+    );
 }
