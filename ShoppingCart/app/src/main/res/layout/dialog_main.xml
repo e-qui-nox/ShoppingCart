@@ -8,15 +8,15 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="username"
+        android:layout_height="50dp"
+        android:hint="Username"
         android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/quantity"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="quantity"
+        android:layout_height="50dp"
+        android:hint="Quantity"
         android:inputType="number"/>
 
 </LinearLayout>

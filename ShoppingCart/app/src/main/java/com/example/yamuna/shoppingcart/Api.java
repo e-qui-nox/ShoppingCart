@@ -28,4 +28,7 @@ public interface Api {
             @Query("username") String username,
             @Query("qty") String quantity
     );
+
+    @GET("getSalesRecords")
+    Call<List<Buy>> getSales();
 }

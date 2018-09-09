@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
         Bundle bundle = getIntent().getExtras();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
@@ -57,16 +56,9 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Phone>>() {
             @Override
             public void onResponse(Call<List<Phone>> call, Response<List<Phone>> response) {
-                List<Phone> list=response.body();
                 Log.i("url",call.request().url().toString());
-                for(int i=0;i<list.size();i++){
-                    String model=(list.get(i).getModel());
-                    String manufacturer = (list.get(i).getManufacturer());
-                    int price=(list.get(i).getPrice());
-                    String image=(list.get(i).getImage());
-                    phoneList.add( new Phone(model,manufacturer,price,image));
-                }
-                recyclerView.setAdapter(new PhoneAdapter(getApplicationContext(),phoneList));
+                phoneList=response.body();
+                renderPhones();
             }
 
             @Override
@@ -85,17 +77,27 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void renderPhones(){
+        adapter=new PhoneAdapter(this,phoneList);
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.search_bar) {
-            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        if (id == R.id.searchbar) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.details) {
+            Intent intent = new Intent(this, SalesActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

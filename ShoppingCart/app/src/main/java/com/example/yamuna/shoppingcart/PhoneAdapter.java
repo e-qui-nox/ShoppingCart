@@ -80,12 +80,12 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
 
                 View view= LayoutInflater.from(context).inflate(R.layout.dialog_main, null);
                 builder.setView(view);
-                builder.setTitle("Details:");
+                builder.setTitle("Buy Phones:");
 
                 final EditText username=view.findViewById(R.id.username);
                 final EditText quantity=view.findViewById(R.id.quantity);
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("BUY", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Api api=ApiClient.getRetrofit().create(Api.class);
