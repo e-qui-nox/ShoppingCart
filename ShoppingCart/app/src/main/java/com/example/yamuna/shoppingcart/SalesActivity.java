@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,12 +28,15 @@ public class SalesActivity extends AppCompatActivity{
         RecyclerView.LayoutManager  layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
+        final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.s_pbLoading);
+
         Api api = ApiClient.getRetrofit().create(Api.class);
 
         Call<List<Buy>> call = api.getSales();
         call.enqueue(new Callback<List<Buy>>() {
             @Override
             public void onResponse(Call<List<Buy>> call, Response<List<Buy>> response) {
+                simpleProgressBar.setVisibility(View.GONE);
                 details=response.body();
                 renderPhones();
             }

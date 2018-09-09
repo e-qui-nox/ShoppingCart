@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager=new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
+        final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.pbLoading);
+
         Api api = ApiClient.getRetrofit().create(Api.class);
 
         Call<List<Phone>> call = api.getPhones();
@@ -43,20 +47,21 @@ public class MainActivity extends AppCompatActivity {
         if(bundle!=null){
             String manufacturer = bundle.getString("Manufacturer");
             String model = bundle.getString("Model");
-            String max_price = bundle.getString("Minimum price");
-            String min_price = bundle.getString("Maximum price");
+            String maxprice = bundle.getString("Minimum price");
+            String minprice = bundle.getString("Maximum price");
 
 
-            if(manufacturer==null && model==null && max_price==null && min_price==null)
+            if(manufacturer==null && model==null && maxprice==null && minprice==null)
                 call = api.getPhones();
             else
-                call = api.getPhones(manufacturer,model,max_price,min_price);
+                call = api.getPhones(manufacturer,model,minprice,maxprice);
         }
 
         call.enqueue(new Callback<List<Phone>>() {
             @Override
             public void onResponse(Call<List<Phone>> call, Response<List<Phone>> response) {
                 Log.i("url",call.request().url().toString());
+                simpleProgressBar.setVisibility(View.GONE);
                 phoneList=response.body();
                 renderPhones();
             }

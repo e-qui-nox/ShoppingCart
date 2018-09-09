@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".SalesActivity">
 
+    <ProgressBar
+        android:id="@+id/s_pbLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="248dp"
+        android:visibility="visible" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sales_recycler_View"
         android:layout_width="match_parent"

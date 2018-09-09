@@ -81,6 +81,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
                 View view= LayoutInflater.from(context).inflate(R.layout.dialog_main, null);
                 builder.setView(view);
                 builder.setTitle("Buy Phones:");
+                builder.setMessage("Enter the details");
 
                 final EditText username=view.findViewById(R.id.username);
                 final EditText quantity=view.findViewById(R.id.quantity);
@@ -88,25 +89,33 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
                 builder.setPositiveButton("BUY", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Api api=ApiClient.getRetrofit().create(Api.class);
-                        Call<Buy> call=api.getBuy(phoneModel, username.getText().toString(), quantity.getText().toString());
-                        call.enqueue(new Callback<Buy>() {
-                            @Override
-                            public void onResponse(Call<Buy> call, Response<Buy> response) {
-                                Toast.makeText(context, "Successfully Completed", Toast.LENGTH_LONG).show();
-                            }
+                        String user_name = username.getText().toString();
+                        String qty = quantity.getText().toString();
+                        if(!user_name.equals("") &&!qty.equals("")) {
+                            Api api = ApiClient.getRetrofit().create(Api.class);
+                            Call<Buy> call = api.getBuy(phoneModel, user_name, qty);
+                            call.enqueue(new Callback<Buy>() {
+                                @Override
+                                public void onResponse(Call<Buy> call, Response<Buy> response) {
+                                    Toast.makeText(context, "Successfully Completed", Toast.LENGTH_LONG).show();
+                                }
 
-                            @Override
-                            public void onFailure(Call<Buy> call, Throwable t) {
-                                Toast.makeText(context,t.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<Buy> call, Throwable t) {
+                                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(context, "No Details Entered", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                        }
 
                     }
                 });
                 builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(context, "Canceled", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
                 });

@@ -23,18 +23,9 @@ public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.SalesViewHol
     @Override
     public SalesAdapter.SalesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.sales_main, parent, false);
+                .inflate(R.layout.details_main, parent, false);
         return new SalesViewHolder(itemView);
     }
-
-    @Override
-    public void onBindViewHolder(@NonNull SalesViewHolder holder,int position) {
-        holder.dinvoice_number.setText("Invoice Number: " + details.get(position).getInvoiceNumber());
-        holder.dmodel.setText("Model: " + details.get(position).getModel());
-        holder.dquantity.setText("Quantity: " + details.get(position).getQuantity());
-        holder.dusername.setText("Username: " + details.get(position).getUsername());
-    }
-
 
     public class SalesViewHolder extends RecyclerView.ViewHolder{
 
@@ -50,6 +41,16 @@ public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.SalesViewHol
             dusername = (TextView)itemView.findViewById(R.id.d_username);
         }
     }
+
+
+    @Override
+    public void onBindViewHolder(@NonNull SalesViewHolder holder,int position) {
+        holder.dinvoice_number.setText("Invoice Number: " + details.get(position).getInvoiceNumber());
+        holder.dmodel.setText("Model: " + details.get(position).getModel());
+        holder.dquantity.setText("Quantity: " + details.get(position).getQuantity());
+        holder.dusername.setText("Username: " + details.get(position).getUsername());
+    }
+
 
     @Override
     public int getItemCount() {

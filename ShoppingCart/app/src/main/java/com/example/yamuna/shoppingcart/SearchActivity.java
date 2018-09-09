@@ -19,8 +19,9 @@ public class SearchActivity extends AppCompatActivity{
 
         manufacturer = (EditText)findViewById(R.id.et_manufacturer);
         model = (EditText)findViewById(R.id.et_model);
-        max_price = (EditText)findViewById(R.id.et_max_price);
         min_price = (EditText)findViewById(R.id.et_min_price);
+        max_price = (EditText)findViewById(R.id.et_max_price);
+
         search = (Button) findViewById(R.id.bt_search);
 
         search.setOnClickListener(new View.OnClickListener(){
@@ -36,13 +37,13 @@ public class SearchActivity extends AppCompatActivity{
                 if(text=="")    text = null;
                 bundle.putString("Model",text);
 
-                text = max_price.getText().toString();
-                if(text=="")    text = null;
-                bundle.putString("Maximum Price",text);
-
                 text = min_price.getText().toString();
                 if(text=="")    text = null;
                 bundle.putString("Minimum Price",text);
+
+                text = max_price.getText().toString();
+                if(text=="")    text = null;
+                bundle.putString("Maximum Price",text);
 
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                 intent.putExtras(bundle);
