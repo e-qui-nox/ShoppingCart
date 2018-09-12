@@ -45,16 +45,17 @@ public class MainActivity extends AppCompatActivity {
         Call<List<Phone>> call = api.getPhones();
 
         if(bundle!=null){
-            String manufacturer = bundle.getString("Manufacturer");
-            String model = bundle.getString("Model");
-            String maxprice = bundle.getString("Minimum price");
-            String minprice = bundle.getString("Maximum price");
+            String manufacturer = bundle.getString("Manufacturer",null);
+            String model = bundle.getString("Model",null);
+            String minprice = bundle.getString("MinimumPrice",null);
+            String maxprice = bundle.getString("MaximumPrice",null);
 
 
-            if(manufacturer==null && model==null && maxprice==null && minprice==null)
+            if(manufacturer==null && model==null && maxprice==null && minprice==null) {
                 call = api.getPhones();
-            else
-                call = api.getPhones(manufacturer,model,minprice,maxprice);
+            }else {
+                call = api.getPhones(manufacturer, model, minprice, maxprice);
+            }
         }
 
         call.enqueue(new Callback<List<Phone>>() {

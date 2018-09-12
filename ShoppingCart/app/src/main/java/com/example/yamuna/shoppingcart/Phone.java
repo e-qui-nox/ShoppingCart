@@ -4,12 +4,12 @@ public class Phone {
     private int id;
     private String model;
     private String manufacturer;
-    private Integer price;
+    private int price;
     private int quantity;
     private String image;
 
 
-    public Phone(String model, String manufacturer, Integer price, String image) {
+    public Phone(String model, String manufacturer, int price, String image) {
         this.model = model;
         this.manufacturer = manufacturer;
         this.price = price;
@@ -25,7 +25,7 @@ public class Phone {
         return manufacturer;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 

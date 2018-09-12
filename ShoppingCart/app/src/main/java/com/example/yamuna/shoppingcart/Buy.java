@@ -2,10 +2,10 @@ package com.example.yamuna.shoppingcart;
 
 public class Buy {
 
-    private String username;
-    private Integer quantity;
-    private String model;
-    private String invoiceNumber;
+    String username;
+    Integer quantity;
+    String model;
+    String invoiceNumber;
 
     public Buy(String username, Integer quantity, String model, String invoiceNumber) {
         super();

@@ -68,8 +68,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
         final String phoneModel = phone.getModel();
         holder.model.setText(phoneModel);
         holder.manufacturer.setText(phone.getManufacturer());
-        String cost = "Rs: " + phone.getPrice().toString();
-        holder.price.setText(cost);
+        holder.price.setText("Rs "+phone.getPrice());
         Glide.with(context).load(Uri.parse(phone.getImage())).into(holder.image);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {

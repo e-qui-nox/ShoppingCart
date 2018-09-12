@@ -18,8 +18,8 @@ public interface Api {
     Call<List<Phone>> getPhones(
             @Query("manufacturer") String manufacturer,
             @Query("model") String model,
-            @Query("min-price") String min_price,
-            @Query("max-price") String max_price
+            @Query("min-price") String minprice,
+            @Query("max-price") String maxprice
     );
 
     @GET("buy")
